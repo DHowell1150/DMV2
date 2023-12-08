@@ -40,7 +40,9 @@ RSpec.describe Facility do
 
     it '#registered_vehicles' do
       expect(@facility_1.register_vehicle(@cruz)).to eq([@cruz])
+
       @cruz.registration_date
+      
       expect(@cruz.plate_type).to eq(:regular)
       expect(@facility_1.registered_vehicles).to eq([@cruz])
       expect(@facility_1.collected_fees).to eq(100)
