@@ -36,7 +36,8 @@ class Vehicle
   end
 
   def regular?
-    @engine == :regular
+    puts "pizza #{self.inspect}"
+    @engine == :ice
   end
 
   def day_of_registration

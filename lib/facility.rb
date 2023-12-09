@@ -32,10 +32,14 @@ class Facility
 
   def register_vehicle(vehicle)
     vehicle.new_registration_date
-    
+
     if vehicle.antique?
       @collected_fees += 25
-    
+    elsif vehicle.electric_vehicle?
+      @collected_fees += 200
+    elsif vehicle.regular?
+      # puts "pizza #{vehicle.regular.inspect?}"
+      @collected_fees += 100
     end
   end
 end

@@ -90,6 +90,7 @@ RSpec.describe Facility do
 
       expect(@facility_1.collected_fees).to eq(200)
     end
+
     it '#collected_fees for registered :regular vehicles' do
       expect(@facility_1.collected_fees).to eq(0)
 
