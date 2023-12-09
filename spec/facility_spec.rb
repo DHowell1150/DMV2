@@ -33,12 +33,12 @@ RSpec.describe Facility do
 
   describe '#register vehicle' do
     it 'registers a vehicle with a registration_date' do
-      expect(@cruz.registration_date).to eq(nil)
+      expect(@camaro.registration_date).to eq(nil)
       expect(@facility_1.registered_vehicles).to eq([])
       
-      @facility_1.register_vehicle(@cruz, @cruz.registration_date)
+      @facility_1.register_vehicle(@camaro)
       
-      expect(@cruz.registration_date).to eq(Date.today) #still equals nil
+      expect(@camaro.registration_date).to eq(Date.today)
     end
 
     it 'can set the plate type' do 

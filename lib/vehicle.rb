@@ -14,8 +14,18 @@ class Vehicle
     @make = vehicle_details[:make]
     @model = vehicle_details[:model]
     @engine = vehicle_details[:engine]
-    @registration_date = vehicle_details[:registration_date]
+    @registration_date = nil
+    @plate_type = nil
   end
+
+  def new_registration_date
+    # puts "self: #{self.inspect}"
+      @registration_date = Date.today
+  end
+
+  # def determine_plate_type      ???
+
+  # end
 
   def antique?
     Date.today.year - @year > 25
@@ -27,5 +37,9 @@ class Vehicle
 
   def regular?
     @engine == :regular
+  end
+
+  def day_of_registration
+    #register_vehicle
   end
 end
