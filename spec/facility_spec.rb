@@ -73,22 +73,29 @@ RSpec.describe Facility do
   end 
   
       
-  describe 'it collects fees' do   #is ths a side effect of regitere_vehcle?
-    it '#collected_fees for registed :antique vehicle' do
+  describe 'it collects fees' do
+    it '#collected_fees for registered :antique vehicle' do
+    #When we register an :antique vehicle, the facility collects :$25 recorded in the @collected_fees.  
       expect(@facility_1.collected_fees).to eq(0)
-      #execution
-      #assertion
+
+      @facility_1.register_vehicle(@camaro)
+
+      expect(@facility_1.collected_fees).to eq(25)
     end
 
     it '#collected_fees for registered :ev vehicles' do
       expect(@facility_1.collected_fees).to eq(0)
-      #execution
-      #assertion
+
+      @facility_1.register_vehicle(@bolt)
+
+      expect(@facility_1.collected_fees).to eq(200)
     end
     it '#collected_fees for registered :regular vehicles' do
       expect(@facility_1.collected_fees).to eq(0)
-      #execution
-      #assertion
+
+      @facility_1.register_vehicle(@cruz)
+
+      expect(@facility_1.collected_fees).to eq(100)
     end
   end
 
