@@ -6,6 +6,7 @@ RSpec.describe Vehicle do
     @bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
     @camaro = Vehicle.new({vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice} )
   end
+
   describe '#initialize' do
     it 'can initialize' do
       expect(@cruz).to be_an_instance_of(Vehicle)
@@ -24,6 +25,10 @@ RSpec.describe Vehicle do
       expect(@bolt.antique?).to eq(false)
       expect(@camaro.antique?).to eq(true)
     end
+
+    it 'has a plate_type' do
+
+    end
   end
 
   describe '#electric_vehicle?' do
@@ -33,11 +38,37 @@ RSpec.describe Vehicle do
       expect(@camaro.electric_vehicle?).to eq(false)
     end
 
+    it 'has a plate_type' do
+      
+    end
+  end
   describe '#regular_vehicle?' do
     it 'can determine if a vehicle is regular' do
       expect(@cruz.regular?).to eq(true)
       expect(@bolt.regular?).to eq(false)
       expect(@camaro.regular?).to eq(false)
     end
+
+    it 'has a plate_type' do
+      
+    end
   end
+end
+
+
+describe 'it determines what kind of vehicle it is' do
+  it "is :antique" do
+    
+  end
+  it "is :ev" do
+    
+  end
+  it "is :regular" do
+    
+  end
+end
+
+
+describe '#plate_type' do 
+  it ""
 end
