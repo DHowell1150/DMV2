@@ -32,13 +32,31 @@ RSpec.describe Facility do
   end
 
   describe '#register vehicle' do
-    it 'registers a vehicle with a registration_date' do
+    it 'registers an :antique vehicle with a registration_date' do
       expect(@camaro.registration_date).to eq(nil)
       expect(@facility_1.registered_vehicles).to eq([])
       
       @facility_1.register_vehicle(@camaro)
       
       expect(@camaro.registration_date).to eq(Date.today)
+    end
+
+    it 'registers an :ev vehicle with a registration_date' do
+      expect(@bolt.registration_date).to eq(nil)
+      expect(@facility_1.registered_vehicles).to eq([])
+      
+      @facility_1.register_vehicle(@bolt)
+      
+      expect(@bolt.registration_date).to eq(Date.today)
+    end
+
+    it 'registers an :regular vehicle with a registration_date' do
+      expect(@cruz.registration_date).to eq(nil)
+      expect(@facility_1.registered_vehicles).to eq([])
+      
+      @facility_1.register_vehicle(@bolt)
+      
+      expect(@bolt.registration_date).to eq(Date.today)
     end
 
     it 'can set the plate type' do 
