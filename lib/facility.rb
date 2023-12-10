@@ -18,36 +18,16 @@ class Facility
   def add_service(service)
     @services << service
   end
- 
-  # def registration_date 
-  #   # Date.today #might need to put this in register_vehicle
-  #   # Date.today.year
-  #   #Date.new(2023, 01, 12)
-  # end
-
-  def fees_collected
-    #to shovel into @collected_fees
-    #might be in #register_vehicle
-  end
 
   def register_vehicle(vehicle)
-    vehicle.new_registration_date
+    vehicle.register
 
-    if vehicle.antique?
+    if vehicle.plate_type == :antique
       @collected_fees += 25
-    elsif vehicle.electric_vehicle?
+    elsif vehicle.plate_type == :ev
       @collected_fees += 200
-    elsif vehicle.regular?
-      # puts "pizza #{vehicle.regular.inspect?}"
+    elsif vehicle.plate_type == :regular
       @collected_fees += 100
     end
   end
 end
-
-# Vehicles 25 years old or older are considered antique and cost $25 to register
-
-# Electric Vehicles (EV) cost $200 to register
-
-# All other vehicles cost $100 to register
-
-# A vehicle’s plate_type should be set to :regular, :antique, or :ev upon successful registration.
