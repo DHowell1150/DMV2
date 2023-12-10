@@ -38,5 +38,12 @@ class Facility
       end
       return false
   end
+
+  def administer_road_test(registrant)
+    if @services.include?("Road Test") && registrant.license_data[:written] == true
+      registrant.license_data[:license] = true
+      return true
+    end
+    return false
+  end
 end
-# A written test can only be administered to registrants with a permit and who are at least 16 years of age
