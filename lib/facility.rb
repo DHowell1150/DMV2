@@ -30,4 +30,14 @@ class Facility
       @collected_fees += 100
     end
   end
+
+  def administer_written_test(registrant)
+      puts "self: #{self.inspect}"
+      if @services.include?("Written Test") && registrant.permit == true && registrant.age >= 16
+        registrant.license_data[:written] = true
+        return true
+      end
+      return false
+  end
 end
+# A written test can only be administered to registrants with a permit and who are at least 16 years of age
