@@ -16,6 +16,7 @@ RSpec.describe Vehicle do
       expect(@cruz.model).to eq('Cruz')
       expect(@cruz.engine).to eq(:ice)
       expect(@cruz.registration_date).to eq(nil)
+      expect(@cruz.plate_type).to eq(nil)
     end
   end
 
@@ -25,10 +26,6 @@ RSpec.describe Vehicle do
       expect(@bolt.antique?).to eq(false)
       expect(@camaro.antique?).to eq(true)
     end
-
-    it 'has a plate_type' do
-
-    end
   end
 
   describe '#electric_vehicle?' do
@@ -37,38 +34,13 @@ RSpec.describe Vehicle do
       expect(@bolt.electric_vehicle?).to eq(true)
       expect(@camaro.electric_vehicle?).to eq(false)
     end
-
-    it 'has a plate_type' do
-      
-    end
   end
+
   describe '#regular_vehicle?' do
     it 'can determine if a vehicle is regular' do
       expect(@cruz.regular?).to eq(true)
       expect(@bolt.regular?).to eq(false)
       expect(@camaro.regular?).to eq(false)
     end
-
-    it 'has a plate_type' do
-      
-    end
   end
-end
-
-
-describe 'it determines what kind of vehicle it is' do
-  it "is :antique" do
-    
-  end
-  it "is :ev" do
-    
-  end
-  it "is :regular" do
-    
-  end
-end
-
-
-describe '#plate_type' do 
-  it ""
 end
