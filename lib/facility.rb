@@ -32,7 +32,6 @@ class Facility
   end
 
   def administer_written_test(registrant)
-      puts "self: #{self.inspect}"
       if @services.include?("Written Test") && registrant.permit == true && registrant.age >= 16
         registrant.license_data[:written] = true
         return true

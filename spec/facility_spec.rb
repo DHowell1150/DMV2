@@ -143,19 +143,14 @@ RSpec.describe Facility do
       expect(@facility_1.administer_written_test(@registrant_2)).to eq(true)         
       expect(@registrant_2.license_data[:written]).to eq(true)
             
-
-
-
-
-      # expect(@registrant_3.age).to eq(15)
-      # expect(@registrant_3.permit?).to eq(false)       
-      # expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
+      expect(@registrant_3.age).to eq(15)
+      expect(@registrant_3.permit?).to eq(false)       
+      expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
             
-      # @registrant_3.earn_permit
+      @registrant_3.earn_permit
             
-      # expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
-        
-      # expect(@registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
+      expect(@registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
     it 'can admister a road_test' do
@@ -166,23 +161,14 @@ RSpec.describe Facility do
 
     end
   end
-
-  end
-  
-#   Administer a written test
-# A written test can only be administered to registrants with a permit and who are at least 16 years of age
-
-# Administer a road test
-# A road test can only be administered to registrants who have passed the written test
-
-# For simplicity’s sake, Registrants who qualify for the road test automatically earn a license
+end
 
 # Renew a driver’s license
 # A license can only be renewed if the registrant has already passed the road test and earned a license
 
 # NOTE: A facility must offer a service in order to perform it. Just because the DMV allows facilities to perform certain services, does not mean that every facility provides every service.
   
-  
+# puts "self: #{self.inspect}"
   
   
   
