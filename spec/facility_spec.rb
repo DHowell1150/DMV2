@@ -26,8 +26,7 @@ RSpec.describe Facility do
       @facility_1.add_service('New Drivers License')
       @facility_1.add_service('Renew Drivers License')
       @facility_1.add_service('Vehicle Registration')
-      expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])
-      # expect(@facility_1.add_service('Vehicle Registration')).to eq(["Vehicle Registration", 'Vehicle Registration', 'New Drivers License'])   
+      expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])   
     end
   end
 
@@ -56,7 +55,7 @@ RSpec.describe Facility do
       expect(@facility_1.registered_vehicles).to eq([])  
 
       @facility_1.register_vehicle(@cruz)   
-        
+
       expect(@cruz.registration_date).to eq(Date.today)
     end
   end 
@@ -64,7 +63,7 @@ RSpec.describe Facility do
 
   describe 'it collects fees' do
     it '#collected_fees for registered :antique vehicle' do
-    #When we register an :antique vehicle, the facility collects :$25 recorded in the @collected_fees.  
+
       expect(@facility_1.collected_fees).to eq(0)
 
       @facility_1.register_vehicle(@camaro)
@@ -104,12 +103,64 @@ RSpec.describe Facility do
 
 
   describe 'admisters tests' do
+    before do
+      @registrant_1 = Registrant.new('Bruce', 18, true )
+      #=> #<Registrant:0x000000012d863e80 @age=18, @license_data={:written=>false, :license=>false, :renewed=>false}, @name="Bruce", @permit=true>
+  
+      @registrant_2 = Registrant.new('Penny', 16 )
+      #=> #<Registrant:0x000000012d94ba78 @age=16, @license_data={:written=>false, :license=>false, :renewed=>false}, @name="Penny", @permit=false>
+  
+      @registrant_3 = Registrant.new('Tucker', 15 )
+      #=> #<Registrant:0x000000012d8b0e38 @age=15, @license_data={:written=>false, :license=>false, :renewed=>false}, @name="Tucker", @permit=false>
+    end
+
     it 'can admister a written_test' do
-      
+      require 'pry' ; binding.pry
+      #administered to registrant with permit
+      #registrant.age >= 16
+      #IF facility offers service
+
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      expect(@registrant_1.permit?).to eq(true)
+      expect(@registrant_2.age).to eq(18)
+      expect(@facility_1.administer_written_test(@registrant_1)).to eq(false)
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      expect(@facility_1.add_service('Written Test')).to eq(["Written Test"])
+      expect(@facility_1.administer_written_test(@registrant_1)).to eq(true)
+      #if facility.services.include?("Written Test" == true)
+      # AND registrant.permit == true
+      # AND registrant.age >=16
+      # 
+      expect(@registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
+
+
+
+      expect(@registrant_2.permit?).to eq(false)
+      expect(@registrant_2.age).to eq(16)
+      expect(@facility_1.administer_written_test(@registrant_2)).to eq(false)
+            
+      @@registrant_2.earn_permit
+            
+      expect(@facility_1.administer_written_test(@registrant_2)).to eq(true)         
+      expect(@registrant_2.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
+            
+
+
+
+
+      expect(@registrant_3.age).to eq(15)
+      expect(@registrant_3.permit?).to eq(false)       
+      expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
+            
+      @registrant_3.earn_permit
+            
+      expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
+        
+      expect(@registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
     it 'can admister a road_test' do
-
+      #if registrant.
     end
     
     it 'can renew a drivers license' do
@@ -118,15 +169,27 @@ RSpec.describe Facility do
   end
 
   end
-
-
   
-      
+#   Administer a written test
+# A written test can only be administered to registrants with a permit and who are at least 16 years of age
 
-      
-      # expect(@facility_1.register_vehicle(@bolt)).to eq([@cruz, @camaro, @bolt])
-      # expect(@facility_1.registered_vehicles).to eq([@cruz, @camaro, @bolt])
-      # expect(@facility_2.registered_vehicles).to eq([])
-      # expect(@facility_2.services).to eq([])
-      # expect(@facility_2.register_vehicle(@bolt)).to eq([])
-      # expect(@facility_2.registered_vehicles).to eq([])
+# Administer a road test
+# A road test can only be administered to registrants who have passed the written test
+
+# For simplicity’s sake, Registrants who qualify for the road test automatically earn a license
+
+# Renew a driver’s license
+# A license can only be renewed if the registrant has already passed the road test and earned a license
+
+# NOTE: A facility must offer a service in order to perform it. Just because the DMV allows facilities to perform certain services, does not mean that every facility provides every service.
+  
+  
+  
+  
+  
+  # expect(@facility_1.register_vehicle(@bolt)).to eq([@cruz, @camaro, @bolt])
+  # expect(@facility_1.registered_vehicles).to eq([@cruz, @camaro, @bolt])
+  # expect(@facility_2.registered_vehicles).to eq([])
+  # expect(@facility_2.services).to eq([])
+  # expect(@facility_2.register_vehicle(@bolt)).to eq([])
+  # expect(@facility_2.registered_vehicles).to eq([])
