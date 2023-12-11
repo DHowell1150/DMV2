@@ -46,4 +46,12 @@ class Facility
     end
     return false
   end
+
+  def renew_drivers_license(registrant)
+    if registrant.license_data[:license] == true
+      registrant.license_data[:renewed] = true
+      return true
+    end
+    return false
+  end
 end
