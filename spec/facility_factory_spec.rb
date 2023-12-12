@@ -16,15 +16,9 @@ RSpec.describe FacilityFactory do
   it 'create_dmv' do
     expect(@factory.create_dmv(@co_dmv_office_locations)).to be_a Array
     expect(@factory.create_dmv(@co_dmv_office_locations).count).to eq(5)
-    expect(@factory.create_dmv(@co_dmv_office_locations)).first[:name].to eq("DMV Tremont Branch")
-    expect(@factory.create_dmv(@co_dmv_office_locations)).first[:address].to eq("2855 Tremont Place Suite 118 Denver CO 80205")
-    expect(@factory.create_dmv(@co_dmv_office_locations)).first[:phone].to eq("(720) 865-4600")
+    expect(@factory.create_dmv(@co_dmv_office_locations).first.keys.count).to eq(3)
+    expect(@factory.create_dmv(@co_dmv_office_locations).first[:name]).to eq("DMV Tremont Branch")
+    expect(@factory.create_dmv(@co_dmv_office_locations).first[:address]).to eq("2855 Tremont Place Suite 118 Denver CO 80205")
+    expect(@factory.create_dmv(@co_dmv_office_locations).first[:phone]).to eq("(720) 865-4600")
   end
 end
-
-
-# address_li
-# address__1
-# city
-# state
-# zip
