@@ -26,6 +26,11 @@ class DmvDataService
   end
 end
 
+#Faraday. Allows parsing. 
+#Java Script Object Notation. Notated like an object. 
+  # Hash with k/v pairs
+  # How FE and BE communicate together
 
 # `load_data` is a method that fetches data from the following link using `faraday`. 
+
 # then it parses the JSON response
