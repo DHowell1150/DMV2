@@ -29,10 +29,15 @@ class Facility
     elsif vehicle.plate_type == :regular
       @collected_fees += 100
     end
+    # To refactor this even further, you could have encapsulated the fees logic
+    # into it's own method so then this register_vehicle method would only be calling 
+    # helper methods - a CEO method. 
   end
 
   def administer_written_test(registrant)
       if @services.include?("Written Test") && registrant.permit == true && registrant.age >= 16
+        #don't need the == true part since registrant.permit already returns true or false...
+        #and the method we want is .permit?, not .permit.
         registrant.license_data[:written] = true
         return true
       end

@@ -10,10 +10,13 @@ class VehicleFactory
               :engine
   
   def initialize; end
+  # if there is nothing inside the initialize method, you can omit it.
 
   def create_vehicles(state_ev_registrations)
     created_vehicles = []
     state_ev_registrations.map do |vehicle|
+      #I'd just use a .each here since you aren't doing anything with 
+      # the transformed array map returns. 
       factory_vehicle_hash = {
         :vin => vehicle[:vin_1_10],
         :year => vehicle[:model_year],
@@ -25,5 +28,6 @@ class VehicleFactory
     end
     created_vehicles
   end
+  #Yeah, great job with this method. 
 
 end

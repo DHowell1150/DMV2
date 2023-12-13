@@ -2,6 +2,9 @@ class Registrant
   attr_reader :name, 
               :age, 
               :permit, 
+              # we actually don't want an method for .permit
+              #since whenever we want to know if they have a permit, we
+              # would use the .permit? method.
               :license_data
 
   def initialize(name, age, permit = false)
