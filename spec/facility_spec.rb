@@ -25,6 +25,8 @@ RSpec.describe Facility do
       expect(@registrant_1).to be_a(Registrant)
       expect(@registrant_2).to be_a(Registrant)
       expect(@registrant_3).to be_a(Registrant)
+      # don't need to test the Registrants in this file. We have already tested Registrant.new
+      # in the registrant_spec file.
 
       expect(@facility_1.name).to eq('DMV Tremont Branch')
       expect(@facility_1.address).to eq('2855 Tremont Place Suite 118 Denver CO 80205')
@@ -41,6 +43,7 @@ RSpec.describe Facility do
       @facility_1.add_service('Vehicle Registration')
       expect(@facility_1.services).to eq(['New Drivers License', 'Renew Drivers License', 'Vehicle Registration'])   
     end
+    #yup, good test to show it can add three things.
   end
 
 
@@ -75,6 +78,9 @@ RSpec.describe Facility do
   
 
   describe 'it collects fees' do
+    #since collecting fees is a side effect of the register_vehicle method, I would have put it
+    # as another it block within the register_vehicle describe block. It's a good test, I'm just commenting
+    # on the organization of it. 
     it '#collected_fees for registered :antique vehicle' do
 
       expect(@facility_1.collected_fees).to eq(0)
@@ -111,6 +117,8 @@ RSpec.describe Facility do
     expect(@bolt.plate_type).to eq(:ev)
     expect(@cruz.plate_type).to eq(:regular)
     expect(@camaro.plate_type).to eq(:antique)
+    #yeath, this is a good integration test. Again though, this is a side effect of the register_vehicle
+    #method so could be in that describe block.
     end
   end
 
@@ -148,6 +156,7 @@ RSpec.describe Facility do
             
       expect(@facility_1.administer_written_test(@registrant_3)).to eq(false)
       expect(@registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      #very thorough!
     end
 
     it 'can admister a road_test' do

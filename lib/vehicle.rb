@@ -36,6 +36,7 @@ class Vehicle
   end 
 
   def register
+    #Nice, I like here how you encapsulated the logic into the vehicle class
     new_registration_date
 
     if self.antique?

@@ -17,6 +17,9 @@ class FacilityFactory
         :zip => dmv_location[:zip],
         :phone => dmv_location[:phone]
     }
+    # why do we have the same hash above and below here? Would we have just done this all in one hash? 
+    # we could have combined everything in the above hash for the :address portion this same way as below
+    # just using the dmv_location hash. No need for two hashes here. 
     new_dmv_hash = {
       :name => new_dmv_hash[:name],
       :address => "#{new_dmv_hash[:address]} #{new_dmv_hash[:address_1]} #{new_dmv_hash[:city]} #{new_dmv_hash[:state]} #{new_dmv_hash[:zip]}",
@@ -25,6 +28,7 @@ class FacilityFactory
       created_locations << new_dmv_hash
     end
   created_locations
+  #indentation got wonky here.
   end
 
   def create_ny_dmv(ny_dmv_office_locations)
@@ -69,3 +73,5 @@ class FacilityFactory
   created_locations
   end
 end
+#overall, great job with creating these methods. I would have just used .each with them instead
+# of .map since you are using a placeholder to store the new objects. 
